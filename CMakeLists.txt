@@ -6,7 +6,15 @@ if(NOT CMAKE_BUILD_TYPE)
    set(CMAKE_BUILD_TYPE Release)
 endif()
 
-find_package(SFML 2 REQUIRED COMPONENTS graphics system window)
+include(FetchContent)
+FetchContent_Declare(SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 2.6.1
+        GIT_SHALLOW ON
+        EXCLUDE_FROM_ALL
+        SYSTEM)
+FetchContent_MakeAvailable(SFML)
+
 find_package(Threads REQUIRED)
 
 set(SFML_LIBS sfml-graphics sfml-system sfml-window)
